@@ -1,12 +1,15 @@
 package com.abc;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class Transaction {
     public final double amount;
 
-    private Date transactionDate;
+
+    //Sagar Removed private identifier for testing
+
+    public ZonedDateTime transactionDate;
+
 
     public Transaction(double amount) {
         this.amount = amount;

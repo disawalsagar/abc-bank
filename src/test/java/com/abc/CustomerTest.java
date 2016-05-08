@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class CustomerTest {
-
+    private static final double DOUBLE_DELTA = 1e-15;
     @Test //Test customer statement generation
     public void testApp(){
 
@@ -53,5 +53,28 @@ public class CustomerTest {
                 .openAccount(new Account(Account.SAVINGS));
         oscar.openAccount(new Account(Account.CHECKING));
         assertEquals(3, oscar.getNumberOfAccounts());
+    }
+
+//Sagar Test for method transferFunds
+    @Test
+    public void testTransferFunds(){
+
+        Account checkingAccount = new Account(Account.CHECKING);
+        Account savingsAccount = new Account(Account.SAVINGS);
+
+        Customer henry = new Customer("Henry").openAccount(checkingAccount).openAccount(savingsAccount);
+
+        checkingAccount.deposit(100.0);
+        savingsAccount.deposit(400.0);
+
+
+        henry.transferFunds(checkingAccount,savingsAccount,100);
+
+
+        assertEquals(0,checkingAccount.sumTransactions(),DOUBLE_DELTA );
+        assertEquals(500,savingsAccount.sumTransactions(),DOUBLE_DELTA );
+
+
+
     }
 }
